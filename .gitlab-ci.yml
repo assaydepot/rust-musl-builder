@@ -14,7 +14,7 @@ build:
   stage: build
   script:
     - export TAG=$(date +%Y-%m-%d)
-    - /etc/init.d/docker start
+    - /etc/init.d/docker start; sleep 3
     - docker build -t $REPO:$TAG .
     - docker tag $REPO:$TAG $REPO:latest
         --buid-arg TOOLCHAIN=nightly
