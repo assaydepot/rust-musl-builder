@@ -2,6 +2,7 @@ image: ubuntu:disco
 
 variables:
   REPO: "554546661178.dkr.ecr.eu-central-1.amazonaws.com/rust-musl"
+  DEBIAN_FRONTEND: noninteractive
 
 stages:
   - build
