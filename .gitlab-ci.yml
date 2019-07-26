@@ -16,9 +16,9 @@ build:
   script:
     - export TAG=$(date +%Y-%m-%d)
     - /etc/init.d/docker start; sleep 3
-    - docker build -t $REPO:$TAG .
+    - docker build -t $REPO:$TAG . \
+        --build-arg TOOLCHAIN=nightly
     - docker tag $REPO:$TAG $REPO:latest
-        --buid-arg TOOLCHAIN=nightly
     - docker history $REPO:$TAG
     - aws ecr get-login --no-login --region=eu-central-1 | sh
     - docker push $REPO:$TAG
