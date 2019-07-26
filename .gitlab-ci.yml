@@ -19,6 +19,6 @@ build:
     - docker build --build-arg TOOLCHAIN=nightly -t $REPO:$TAG .
     - docker tag $REPO:$TAG $REPO:latest
     - docker history $REPO:$TAG
-    - aws ecr get-login --no-login --region=eu-central-1 | sh
+    - aws ecr get-login --region=eu-central-1 | awk '{gsub(/ -e none/, ""); print}' | sh
     - docker push $REPO:$TAG
     - docker push $REPO:latest
