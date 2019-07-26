@@ -1,7 +1,6 @@
 image: ubuntu:disco
 
 variables:
-  TAG: "$(date +%Y-%m-%d)"
   REPO: "554546661178.dkr.ecr.eu-central-1.amazonaws.com/rust-musl"
 
 stages:
@@ -14,6 +13,7 @@ before_script:
 build:
   stage: build
   script:
+    - export TAG=$(date +%Y-%m-%d)
     - /etc/init.d/docker start
     - docker build -t $REPO:$TAG .
     - docker tag $REPO:$TAG $REPO:latest
