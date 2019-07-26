@@ -6,7 +6,7 @@ ARG TOOLCHAIN=stable
 
 # The OpenSSL version to use. We parameterize this because many Rust
 # projects will fail to build with 1.1.
-ARG OPENSSL_VERSION=1.0.2t
+ARG OPENSSL_VERSION=1.0.2s
 
 # Make sure we have basic dev tools for building C libraries.  Our goal
 # here is to support the musl-libc builds and Cargo builds needed for a
