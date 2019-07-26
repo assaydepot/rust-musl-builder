@@ -1,12 +1,12 @@
 # Use Ubuntu 18.04 LTS as our base image.
-FROM ubuntu:18.04
+FROM ubuntu:disco
 
 # The Rust toolchain to use when building our image.  Set by `hooks/build`.
 ARG TOOLCHAIN=stable
 
 # The OpenSSL version to use. We parameterize this because many Rust
 # projects will fail to build with 1.1.
-ARG OPENSSL_VERSION=1.0.2r
+ARG OPENSSL_VERSION=1.0.2t
 
 # Make sure we have basic dev tools for building C libraries.  Our goal
 # here is to support the musl-libc builds and Cargo builds needed for a
