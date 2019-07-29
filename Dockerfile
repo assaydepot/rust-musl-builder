@@ -8,6 +8,8 @@ ARG TOOLCHAIN=stable
 # projects will fail to build with 1.1.
 ARG OPENSSL_VERSION=1.0.2s
 
+ENV DEBIAN_FRONTEND=noninteractive
+
 # Make sure we have basic dev tools for building C libraries.  Our goal
 # here is to support the musl-libc builds and Cargo builds needed for a
 # large selection of the most popular crates.
