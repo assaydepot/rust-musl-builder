@@ -141,6 +141,11 @@ ENV OPENSSL_DIR=/usr/local/musl/ \
 # RUN cargo install -f cargo-audit && \
 #     rm -rf /home/rust/.cargo/registry/
 
+ENV KUBECTL_VERSION=v1.13.7
+RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/$KUBECTL_VERSION/bin/linux/amd64/kubectl && \
+    chmod a+x kubectl && \
+    mv kubectl /usr/local/bin/kubectl
+
 # Expect our source code to live in /home/rust/src.  We'll run the build as
 # user `rust`, which will be uid 1000, gid 1000 outside the container.
 WORKDIR /home/rust/src
