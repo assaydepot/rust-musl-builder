@@ -10,6 +10,12 @@ ARG OPENSSL_VERSION=1.0.2s
 
 ENV DEBIAN_FRONTEND=noninteractive
 
+# We need the kubectl for rolling out releases in CD
+ENV KUBECTL_VERSION=v1.13.7
+RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/$KUBECTL_VERSION/bin/linux/amd64/kubectl && \
+    chmod a+x kubectl && \
+    mv kubectl /usr/local/bin/kubectl
+
 # Make sure we have basic dev tools for building C libraries.  Our goal
 # here is to support the musl-libc builds and Cargo builds needed for a
 # large selection of the most popular crates.
@@ -140,11 +146,6 @@ ENV OPENSSL_DIR=/usr/local/musl/ \
 # TODO: check when cargo-audit works with nightly again (not as of 2019-07-28)
 # RUN cargo install -f cargo-audit && \
 #     rm -rf /home/rust/.cargo/registry/
-
-ENV KUBECTL_VERSION=v1.13.7
-RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/$KUBECTL_VERSION/bin/linux/amd64/kubectl && \
-    chmod a+x kubectl && \
-    mv kubectl /usr/local/bin/kubectl
 
 # Expect our source code to live in /home/rust/src.  We'll run the build as
 # user `rust`, which will be uid 1000, gid 1000 outside the container.
