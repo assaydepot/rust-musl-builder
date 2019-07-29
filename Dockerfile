@@ -39,7 +39,7 @@ RUN apt-get update && \
         awscli docker.io \
         && \
     apt-get clean && rm -rf /var/lib/apt/lists/* && \
-    useradd rust --user-group --create-home --shell /bin/bash --groups sudo && \
+    useradd rust --user-group --create-home --shell /bin/bash --groups sudo,docker && \
     MDBOOK_VERSION=0.2.1 && \
     curl -LO https://github.com/rust-lang-nursery/mdBook/releases/download/v$MDBOOK_VERSION/mdbook-v$MDBOOK_VERSION-x86_64-unknown-linux-musl.tar.gz && \
     tar xf mdbook-v$MDBOOK_VERSION-x86_64-unknown-linux-musl.tar.gz && \
