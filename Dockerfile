@@ -69,8 +69,7 @@ ENV PATH=/home/rust/.cargo/bin:/usr/local/musl/bin:/usr/local/sbin:/usr/local/bi
 # manually.
 RUN curl https://sh.rustup.rs -sSf | \
     sh -s -- -y --default-toolchain $TOOLCHAIN && \
-    rustup target add x86_64-unknown-linux-musl && \
-    rustup target add armv7-unknown-linux-musleabihf
+    rustup target add x86_64-unknown-linux-musl
 ADD cargo-config.toml /home/rust/.cargo/config
 
 # Set up a `git credentials` helper for using GH_USER and GH_TOKEN to access
