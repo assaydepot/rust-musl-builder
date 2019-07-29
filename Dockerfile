@@ -10,12 +10,6 @@ ARG OPENSSL_VERSION=1.0.2s
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-# We need the kubectl for rolling out releases in CD
-ENV KUBECTL_VERSION=v1.13.7
-RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/$KUBECTL_VERSION/bin/linux/amd64/kubectl && \
-    chmod a+x kubectl && \
-    mv kubectl /usr/local/bin/kubectl
-
 # Make sure we have basic dev tools for building C libraries.  Our goal
 # here is to support the musl-libc builds and Cargo builds needed for a
 # large selection of the most popular crates.
@@ -51,6 +45,12 @@ RUN apt-get update && \
     tar xf mdbook-v$MDBOOK_VERSION-x86_64-unknown-linux-musl.tar.gz && \
     mv mdbook /usr/local/bin/ && \
     rm -f mdbook-v$MDBOOK_VERSION-x86_64-unknown-linux-musl.tar.gz
+
+# We need the kubectl for rolling out releases in CD
+ENV KUBECTL_VERSION=v1.13.7
+RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/$KUBECTL_VERSION/bin/linux/amd64/kubectl && \
+    chmod a+x kubectl && \
+    mv kubectl /usr/local/bin/kubectl
 
 # Static linking for C++ code
 RUN sudo ln -s "/usr/bin/g++" "/usr/bin/musl-g++"
