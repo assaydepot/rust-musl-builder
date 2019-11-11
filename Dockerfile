@@ -1,5 +1,5 @@
 # Use Ubuntu 18.04 LTS as our base image.
-FROM ubuntu:disco
+FROM ubuntu:eoan
 
 # The Rust toolchain to use when building our image.  Set by `hooks/build`.
 ARG TOOLCHAIN=stable
