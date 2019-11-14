@@ -6,7 +6,9 @@ ARG TOOLCHAIN=stable
 
 # The OpenSSL version to use. We parameterize this because many Rust
 # projects will fail to build with 1.1.
-ARG OPENSSL_VERSION=1.0.2s
+ARG OPENSSL_VERSION=1.0.2t
+
+ARG POSTGRESQL_VERSION=11.2
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -118,7 +120,6 @@ RUN echo "Building zlib" && \
 
 RUN echo "Building libpq" && \
     cd /tmp && \
-    POSTGRESQL_VERSION=11.2 && \
     curl -LO "https://ftp.postgresql.org/pub/source/v$POSTGRESQL_VERSION/postgresql-$POSTGRESQL_VERSION.tar.gz" && \
     tar xzf "postgresql-$POSTGRESQL_VERSION.tar.gz" && cd "postgresql-$POSTGRESQL_VERSION" && \
     CC=musl-gcc CPPFLAGS=-I/usr/local/musl/include LDFLAGS=-L/usr/local/musl/lib ./configure --with-openssl --without-readline --prefix=/usr/local/musl && \
