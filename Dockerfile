@@ -78,6 +78,7 @@ ENV PATH=/home/rust/.cargo/bin:/usr/local/musl/bin:/usr/local/sbin:/usr/local/bi
 RUN curl https://sh.rustup.rs -sSf | \
     sh -s -- -y --default-toolchain $TOOLCHAIN && \
     rustup target add x86_64-unknown-linux-musl && \
+    rustup target add 686-unknown-linux-musl && \
     cargo install cargo-prune
 ADD cargo-config.toml /home/rust/.cargo/config
 
