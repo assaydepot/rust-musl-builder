@@ -49,7 +49,7 @@ RUN apt-get update && \
     rm -f mdbook-v$MDBOOK_VERSION-x86_64-unknown-linux-musl.tar.gz
 
 # We need the kubectl for rolling out releases in CD
-ENV KUBECTL_VERSION=v1.13.7
+ENV KUBECTL_VERSION=v1.17.3
 RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/$KUBECTL_VERSION/bin/linux/amd64/kubectl && \
     chmod a+x kubectl && \
     mv kubectl /usr/local/bin/kubectl
