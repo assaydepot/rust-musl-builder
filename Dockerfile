@@ -137,7 +137,8 @@ ENV OPENSSL_DIR=/usr/local/musl/ \
     PKG_CONFIG_ALLOW_CROSS=true \
     PKG_CONFIG_ALL_STATIC=true \
     LIBZ_SYS_STATIC=1 \
-    TARGET=musl
+    TARGET=musl \
+    HELM_VERSION=3.1.0
 
 # (Please feel free to submit pull requests for musl-libc builds of other C
 # libraries needed by the most popular and common Rust crates, to avoid
@@ -148,6 +149,15 @@ ENV OPENSSL_DIR=/usr/local/musl/ \
 # TODO: check when cargo-audit works with nightly again (not as of 2019-07-28)
 # RUN cargo install -f cargo-audit && \
 #     rm -rf /home/rust/.cargo/registry/
+
+# Make helm available so deploys can happen in our CI
+RUN cd /tmp; \
+    curl -sO https://get.helm.sh/helm-v$HELM_VERSION-linux-amd64.tar.gz && \
+    tar xzvf helm-v$HELM_VERSION-linux-amd64.tar.gz && \
+    sudo mv linux-amd64/helm /usr/local/bin; \
+    rm -rf linux-amd64/ helm-v$HELM_VERSION-linux-amd64.tar.gz; \
+    cd -
+
 
 # Expect our source code to live in /home/rust/src.  We'll run the build as
 # user `rust`, which will be uid 1000, gid 1000 outside the container.
