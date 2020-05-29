@@ -1,5 +1,5 @@
-# Use Ubuntu 18.04 LTS as our base image.
-FROM ubuntu:disco
+# Use Ubuntu 20.04 as our base image.
+FROM ubuntu:focal
 
 # The Rust toolchain to use when building our image.  Set by `hooks/build`.
 ARG TOOLCHAIN=stable
