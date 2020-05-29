@@ -6,7 +6,7 @@ services:
 variables:
   REPO: "554546661178.dkr.ecr.eu-central-1.amazonaws.com/rust-musl"
   DEBIAN_FRONTEND: noninteractive
-  TOOLCHAIN: nightly-2020-02-21
+  TOOLCHAIN: nightly-2020-05-14
   OPENSSL_VERSION: "1.0.2t"
   POSTGRESQL_VERSION: "11.4"
   DOCKER_HOST: tcp://localhost:2375
