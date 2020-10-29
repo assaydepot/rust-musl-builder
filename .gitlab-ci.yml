@@ -29,7 +29,7 @@ before_script:
 build_nightly:
   <<: *build_definition
   variables:
-    TOOLCHAIN: nightly-2020-09-20
+    TOOLCHAIN: nightly-2020-07-04
 
 build_stable:
   <<: *build_definition
